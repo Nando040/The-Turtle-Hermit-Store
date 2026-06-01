@@ -74,4 +74,11 @@ const getCurrentUser = asyncHandler(async (req, res) => {
     res.status(200).json(req.user);
 });
 
-module.exports = { registerUser, loginUser, getCurrentUser };
+// @desc Logout user
+// @route POST /api/users/logout
+// @access Private
+const logoutUser = asyncHandler(async (req, res) => {
+    res.status(200).json({ message: "Logged out successfully" });
+});
+
+module.exports = { registerUser, loginUser, getCurrentUser, logoutUser };

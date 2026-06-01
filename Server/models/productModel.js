@@ -16,16 +16,26 @@ const productSchema = mongoose.Schema({
     category: {
         type: String,
         required: [true, "Please provide a category"],
-        enum: ["Protection", "Karate", "Thai/Kickbox", "Gi/Judo"]
+        enum: ["Protection", "Karate", "Thai/Kickbox", "BJJ/Judo"]
     },
     imageUrl: {
         type: String,
     },
     sizes: {
         type: [String],
+    },
+    categorySlug: {
+        type: String,
     }
 }, {
     timestamps: true
+});
+
+productSchema.pre("save", async function() {
+    this.categorySlug = this.category
+        .toLowerCase()
+        .replace(/\//g, "-")
+        .replace(/\s+/g, "-");
 });
 
 module.exports = mongoose.model("Product", productSchema);
