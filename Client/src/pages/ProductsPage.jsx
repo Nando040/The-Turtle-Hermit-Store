@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { getProducts } from '../services/Api'
 
 const ProductsPage = () => {
     const [products, setProducts] = useState([])
@@ -10,8 +11,7 @@ const ProductsPage = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/products')
-                const data = await response.json()
+                const data = await getProducts()
                 setProducts(data)
             } catch (err) {
                 setError('Kunde inte hämta produkter')
