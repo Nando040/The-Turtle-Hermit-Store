@@ -12,7 +12,7 @@ const createOrder = asyncHandler(async (req, res) => {
     }
 
     const order = await Order.create({
-        user_id: req.user.id,
+        ...(req.user && { user_id: req.user.id }),
         products,
         totalPrice,
         paymentMethod,

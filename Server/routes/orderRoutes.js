@@ -4,10 +4,8 @@ const validateToken = require("../middleware/validateTokenHandler");
 
 const router = express.Router();
 
-// Alla order-routes är Private
-router.use(validateToken);
-
-router.route("/").post(createOrder).get(getUserOrders);
-router.route("/:id").get(getOrderById);
+// POST är publik (gäster kan beställa), GET-routes kräver inloggning
+router.route("/").post(createOrder).get(validateToken, getUserOrders);
+router.route("/:id").get(validateToken, getOrderById);
 
 module.exports = router;

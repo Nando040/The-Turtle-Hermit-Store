@@ -1,0 +1,78 @@
+{
+  "products": [
+    {
+      "name": "Roshi's Turtle Shield",
+      "category": "Protection",
+      "price": 10000,
+      "imageUrl": "/images/products/roshis-turtle-shield.jpg",
+      "description": "A legendary turtle shield for fighters who need ultimate protection. Price: 10000 kr or 100 naughty magazines for Roshi.",
+      "stock": 1
+    },
+    {
+      "name": "CapsuleCorp Container",
+      "category": "Protection",
+      "price": 29999,
+      "imageUrl": "/images/products/capsulecorp-container.png",
+      "description": "A slim CapsuleCorp storage container for carrying rare gear, secret training tools and emergency dojo supplies.",
+      "stock": 3
+    },
+    {
+      "name": "Twins White Gloves",
+      "category": "Thai/Kickbox",
+      "price": 899,
+      "imageUrl": "/images/products/twins-white-gloves.jpg",
+      "description": "Classic white Thai boxing gloves built for fighters who train hard and respect the craft. Designed for striking, pad work and sparring with strong wrist support, comfortable padding and a clean fight-gym look.",
+      "stock": 12
+    },
+    {
+      "name": "Black Venum Fight Shorts",
+      "category": "Thai/Kickbox",
+      "price": 599,
+      "imageUrl": "/images/products/black-venum-fight-shorts.png",
+      "description": "Black fight shorts made for kickboxing, Muay Thai and hard training sessions. Lightweight, flexible and built for fighters who need freedom of movement.",
+      "stock": 10
+    },
+    {
+      "name": "Classic White Karate Gi",
+      "category": "Karate",
+      "price": 799,
+      "imageUrl": "/images/products/classic-white-karate-gi.jpg",
+      "description": "A classic white karate gi made for kihon, kata and kumite. Lightweight, clean and built for disciplined dojo training.",
+      "stock": 14
+    },
+    {
+      "name": "Nimbus Training Gi",
+      "category": "Karate",
+      "price": 749,
+      "imageUrl": "/images/products/nimbus-training-gi.jpg",
+      "description": "A lightweight martial arts uniform made for disciplined fighters who train hard, play well and stay ready for the next training arc.",
+      "stock": 15
+    },
+    {
+      "name": "The Flying Nimbus",
+      "category": "Karate",
+      "price": 199999,
+      "imageUrl": "/images/products/the-flying-nimbus.png",
+      "description": "A legendary cloud for fighters with a pure heart. Can also be obtained for free if your heart is pure and remains pure.",
+      "stock": 1
+    },
+    {
+      "name": "Black BJJ Gi",
+      "category": "BJJ/Judo",
+      "price": 1199,
+      "imageUrl": "/images/products/black-bjj-gi.jpg",
+      "description": "A durable black BJJ gi built for hard rolls, grip fighting and disciplined grappling sessions. Strong fabric, clean look and ready for the mat.",
+      "stock": 8
+    },
+    {
+      "name": "Turtle Grappling Rashguard",
+      "category": "BJJ/Judo",
+      "price": 449,
+      "imageUrl": "/images/products/turtle-grappling-rashguard.jpg",
+      "description": "A fitted rashguard for no-gi grappling, BJJ and judo conditioning. Built to handle sweat, scrambles and long training rounds.",
+      "stock": 12
+    }
+  ],
+  "users": [],
+  "orders": []
+}

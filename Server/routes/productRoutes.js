@@ -10,7 +10,8 @@ router.route("/category/:category").get(getProductsByCategory);
 router.route("/:id").get(getProduct);
 
 // Private routes
-router.route("/").post(validateToken, createProduct);
-router.route("/:id").put(validateToken, updateProduct).delete(validateToken, deleteProduct);
+router.route("/").post(createProduct);
+router.route("/:id").put(updateProduct)
+.delete(deleteProduct);
 
 module.exports = router;
