@@ -2,6 +2,15 @@ import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { getProductById } from '../services/Api'
 import { useCart } from '../context/CartContext'
+import './ProductDetailPage.css'
+
+// Dynamic background based on category
+const categoryBackgrounds = {
+    'Protection/Skydd': '/images/categories/Protection.jpg',
+    'Karate': '/images/categories/Karate.jpg',
+    'Thai/Kickbox': '/images/categories/Thaibox.jpg',
+    'BJJ/Judo': '/images/categories/BjjJudo.jpg',
+}
 
 const ProductDetailPage = () => {
     const { id } = useParams()
@@ -12,6 +21,7 @@ const ProductDetailPage = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [selectedSize, setSelectedSize] = useState('')
+    const [quantity, setQuantity] = useState(1)
     const [added, setAdded] = useState(false)
 
     useEffect(() => {
@@ -32,48 +42,125 @@ const ProductDetailPage = () => {
     }, [id])
 
     const handleAddToCart = () => {
-        addToCart({ ...product, selectedSize })
+        for (let i = 0; i < quantity; i++) {
+            addToCart({ ...product, selectedSize })
+        }
         setAdded(true)
         setTimeout(() => setAdded(false), 2000)
     }
 
+    if (loading) return <p className="detail-status">Loading...</p>
+    if (error) return <p className="detail-status">{error}</p>
+    if (!product) return <p className="detail-status">Product not found</p>
 
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>{error}</p>
-    if (!product) return <p>Product not found</p>
+    // Pick background based on category, fallback to default
+    const bgImage = categoryBackgrounds[product.category] || '/images/hero/goku-section.png'
 
     return (
-        <div>
-            <button onClick={() => navigate('/products')}>← Back</button>
+        <div className="detail-page">
 
-            <img src={product.imageUrl} alt={product.name} width="200" />
-            <h1>{product.name}</h1>
-            <p>{product.description}</p>
-            <p>{product.price} kr</p>
-            <p>{product.category}</p>
+            {/* Dynamic background layer */}
+            <div
+                className="detail-background"
+                style={{ backgroundImage: `url(${bgImage})` }}
+            />
 
-            {product.sizes && product.sizes.length > 0 && (
-                <div>
-                    <label>Size: </label>
-                    {product.sizes.map(size => (
-                        <button
-                            key={size}
-                            onClick={() => setSelectedSize(size)}
-                            style={{ fontWeight: selectedSize === size ? 'bold' : 'normal' }}
-                        >
-                            {size}
+            {/* Content above background */}
+            <div className="detail-content">
+
+                {/* ── LEFT COLUMN ── */}
+                <div className="detail-left">
+                    <h1 className="detail-title">{product.name}</h1>
+
+                    <img
+                        src={product.imageUrl}
+                        alt={product.name}
+                        className="detail-img"
+                    />
+
+                    {/* Color block – only if product.color exists */}
+                    {product.color && (
+                        <div className="detail-color-block">
+                            <span className="detail-color-label">{product.color}</span>
+                        </div>
+                    )}
+
+                    {/* Size + quantity row */}
+                    <div className="detail-controls">
+                        {/* Quantity controls */}
+                        <div className="detail-qty">
+                            <button
+                                className="qty-btn"
+                                onClick={() => setQuantity(q => Math.max(1, q - 1))}
+                            >
+                                –
+                            </button>
+                            <span className="qty-count">{quantity}</span>
+                            <button
+                                className="qty-btn"
+                                onClick={() => setQuantity(q => q + 1)}
+                            >
+                                +
+                            </button>
+                        </div>
+
+                        {/* Size block – only if sizes exist */}
+                        {product.sizes && product.sizes.length > 0 && (
+                            <div className="detail-sizes">
+                                {product.sizes.map(size => (
+                                    <button
+                                        key={size}
+                                        className={`size-btn ${selectedSize === size ? 'size-btn--active' : ''}`}
+                                        onClick={() => setSelectedSize(size)}
+                                    >
+                                        {size}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Action buttons */}
+                    <div className="detail-actions">
+                        <button className="detail-btn-add" onClick={handleAddToCart}>
+                            {added ? 'Added ✓' : 'Add to cart'}
                         </button>
-                    ))}
+                        <button className="detail-btn-cart" onClick={() => navigate('/cart')}>
+                            Go to cart
+                        </button>
+                    </div>
                 </div>
-            )}
 
-            <button onClick={handleAddToCart}>
-                {added ? 'Added to cart! ✓' : 'Add to cart'}
-            </button>
+                {/* ── RIGHT COLUMN ── */}
+                <div className="detail-right">
+                    {/* Price + shipping */}
+                    <div className="detail-pricing">
+                        <p className="detail-price">{product.price} kr</p>
+                        <p className="detail-shipping">+ 49 kr shipping</p>
+                    </div>
 
-            <button onClick={() => navigate('/cart')}>
-                Go to cart
-            </button>
+                    {/* Description */}
+                    {product.description && (
+                        <div className="detail-description">
+                            <h2 className="detail-section-title">Description:</h2>
+                            <p>{product.description}</p>
+                        </div>
+                    )}
+
+                    {/* Product details list */}
+                    {product.details && product.details.length > 0 && (
+                        <div className="detail-info">
+                            <h2 className="detail-section-title">Product details:</h2>
+                            <ul className="detail-info-list">
+                                {product.details.map((point, index) => (
+                                    <li key={index}>{point}</li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+
+            </div>
         </div>
     )
 }

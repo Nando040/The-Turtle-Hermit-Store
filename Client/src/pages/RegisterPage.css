@@ -1,0 +1,117 @@
+/* ── Page wrapper ── */
+.register-page {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ── Background layer ── */
+.register-background {
+    position: fixed;
+    inset: 0;
+    background-image: url('/images/hero/HermitLogo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* ── Content above background ── */
+.register-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* ── Title ── */
+.register-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 32px;
+    color: #000;
+    margin-bottom: 24px;
+}
+
+/* ── Form ── */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* ── Field ── */
+.register-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.register-field label {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 13px;
+    color: #000;
+}
+
+.register-field input {
+    padding: 8px 10px;
+    border: none;
+    border-bottom: 1px solid #aaa;
+    background: transparent;
+    font-size: 14px;
+    outline: none;
+    width: 100%;
+}
+
+.register-field input:focus {
+    border-bottom: 1px solid #000;
+}
+
+/* ── Error ── */
+.register-error {
+    color: red;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ── Register button ── */
+.register-btn {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    padding: 12px;
+    background: rgba(80, 80, 80, 0.85);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s ease;
+}
+
+.register-btn:hover {
+    background: rgba(40, 40, 40, 0.95);
+}
+
+.register-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ── Login link ── */
+.register-login-link {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 13px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #444;
+    text-align: center;
+    text-decoration: underline;
+    padding: 0;
+}
+
+.register-login-link:hover {
+    color: #000;
+}
