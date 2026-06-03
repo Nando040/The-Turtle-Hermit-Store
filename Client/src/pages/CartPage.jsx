@@ -7,11 +7,16 @@ const CartPage = () => {
     const navigate = useNavigate()
 
     if (cartItems.length === 0) return (
-        <div className="cart-empty">
-            <h1>Shopping Cart</h1>
-            <p>Your cart is empty</p>
-            <button onClick={() => navigate('/products')}>Back to Products</button>
-        </div>
+        <div className="cart-page">
+            <div className="cart-background" />
+
+                <div className="cart-empty">
+                    <h1>Shopping Cart</h1>
+                    <p>Your cart is empty</p>
+                    <button onClick={() => navigate('/products')}>Back to Products</button>
+                </div>
+            </div>
+
     )
 
     return (

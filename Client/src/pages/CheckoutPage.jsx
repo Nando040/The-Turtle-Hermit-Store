@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 import { createOrder, getCurrentUser } from '../services/Api'
 import './CheckoutPage.css'
 
 const SHIPPING_FEE = 49
 
 const CheckoutPage = () => {
-    const { cartItems, totalPrice, clearCart, token } = useCart()
+    const { cartItems, totalPrice, clearCart } = useCart()
+    const { authed, token } = useAuth()
     const navigate = useNavigate()
     const [user, setUser] = useState(null)
     const [form, setForm] = useState({

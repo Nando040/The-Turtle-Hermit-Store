@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 import logo from '../assets/TurtleHermitLogo.png'
 
 const Navbar = () => {
-    const { cartCount, token, logout } = useCart()
+    const { cartCount } = useCart()
+    const { authed, logout } = useAuth()
 
     return (
         <nav style={{
@@ -45,7 +47,7 @@ const Navbar = () => {
                         </span>
                     )}
                 </Link>
-                {token ? (
+                {authed ? (
                     <button onClick={logout} style={linkStyle}>Logout</button>
                 ) : (
                     <Link to="/login" style={linkStyle}>Login</Link>
