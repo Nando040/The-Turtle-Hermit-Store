@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../services/Api'
 import { useCart } from '../context/CartContext'
+import './LoginPage.css'
 
 const LoginPage = () => {
     const navigate = useNavigate()
@@ -48,42 +49,55 @@ const LoginPage = () => {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
+        <div className="login-page">
 
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Email</label>
-                    <input
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="Your email"
-                    />
-                </div>
+            {/* Background layer */}
+            <div className="login-background" />
 
-                <div>
-                    <label>Password</label>
-                    <input
-                        type="password"
-                        name="password"
-                        value={form.password}
-                        onChange={handleChange}
-                        placeholder="Your password"
-                    />
-                </div>
+            {/* Content above background */}
+            <div className="login-content">
+                <h1 className="login-title">Login</h1>
 
-                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <form className="login-form" onSubmit={handleSubmit}>
 
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Logging in...' : 'Login'}
-                </button>
+                    <div className="login-field">
+                        <label>Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            value={form.email}
+                            onChange={handleChange}
+                            placeholder="Your email"
+                        />
+                    </div>
 
-                <button type="button" onClick={() => navigate('/register')}>
-                    Don't have an account? Register
-                </button>
-            </form>
+                    <div className="login-field">
+                        <label>Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            value={form.password}
+                            onChange={handleChange}
+                            placeholder="Your password"
+                        />
+                    </div>
+
+                    {error && <p className="login-error">{error}</p>}
+
+                    <button type="submit" className="login-btn" disabled={loading}>
+                        {loading ? 'Logging in...' : 'Login'}
+                    </button>
+
+                    <button
+                        type="button"
+                        className="login-register-link"
+                        onClick={() => navigate('/register')}
+                    >
+                        Don't have an account? Register
+                    </button>
+
+                </form>
+            </div>
         </div>
     )
 }
