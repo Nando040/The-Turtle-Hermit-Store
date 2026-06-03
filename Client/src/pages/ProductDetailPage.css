@@ -187,6 +187,24 @@
     color: #000;
 }
 
+/* Price + shipping */
+.detail-pricing {
+    margin-bottom: 24px;
+}
+
+.detail-price {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 32px;
+    color: #000;
+    margin: 0 0 4px;
+}
+
+.detail-shipping {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
 .detail-description p {
     font-family: 'Permanent Marker', cursive;
     font-size: 15px;

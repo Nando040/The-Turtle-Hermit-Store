@@ -133,6 +133,12 @@ const ProductDetailPage = () => {
 
                 {/* ── RIGHT COLUMN ── */}
                 <div className="detail-right">
+                    {/* Price + shipping */}
+                    <div className="detail-pricing">
+                        <p className="detail-price">{product.price} kr</p>
+                        <p className="detail-shipping">+ 49 kr shipping</p>
+                    </div>
+
                     {/* Description */}
                     {product.description && (
                         <div className="detail-description">
