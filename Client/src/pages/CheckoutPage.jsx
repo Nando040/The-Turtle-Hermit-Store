@@ -9,9 +9,11 @@ const SHIPPING_FEE = 49
 
 const CheckoutPage = () => {
     const { cartItems, totalPrice, clearCart } = useCart()
-    const { authed, token } = useAuth()
+    const { authed } = useAuth()
+    const token = localStorage.getItem('token')
     const navigate = useNavigate()
-    const [user, setUser] = useState(null)
+
+    const [loggedInUser, setLoggedInUser] = useState(null)
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -29,13 +31,7 @@ const CheckoutPage = () => {
             try {
                 const data = await getCurrentUser(token)
                 if (data?.name) {
-                    setUser(data)
-                    setForm(prev => ({
-                        ...prev,
-                        name: data.name || '',
-                        email: data.email || '',
-                        address: data.address || '',
-                    }))
+                    setLoggedInUser(data)
                 }
             } catch (err) {
                 console.error('Could not fetch user')
@@ -44,8 +40,14 @@ const CheckoutPage = () => {
         fetchUser()
     }, [token])
 
+    const isLoggedIn = authed && !!loggedInUser
+
+    // Shipping info depending on login status
+    const shippingName = isLoggedIn ? (loggedInUser?.name || '–') : (form.name || '–')
+    const shippingAddress = isLoggedIn ? (loggedInUser?.address || '–') : (form.address || '–')
+
     if (cartItems.length === 0) return (
-        <div>
+        <div className="checkout-empty">
             <h1>Checkout</h1>
             <p>Your cart is empty</p>
             <button onClick={() => navigate('/products')}>Back to Products</button>
@@ -60,7 +62,8 @@ const CheckoutPage = () => {
         e.preventDefault()
         setError(null)
 
-        if (!form.name || !form.email || !form.address) {
+        // Validate – guests must fill in fields
+        if (!isLoggedIn && (!form.name || !form.email || !form.address)) {
             setError('Please fill in all fields')
             return
         }
@@ -77,14 +80,14 @@ const CheckoutPage = () => {
             })),
             totalPrice: totalPrice + SHIPPING_FEE,
             paymentMethod: selectedPaymentMethod,
-            shippingAddress: form.address
+            shippingAddress: shippingAddress
         }
 
         try {
             const result = await createOrder(orderData, token)
             if (result._id) {
                 clearCart()
-                navigate('/confirmation', { state: { order: result, name: form.name } })
+                navigate('/confirmation', { state: { order: result, name: shippingName } })
             } else {
                 setError('Something went wrong, please try again')
             }
@@ -94,8 +97,6 @@ const CheckoutPage = () => {
             setLoading(false)
         }
     }
-
-    const isLoggedIn = !!token && !!user
 
     return (
         <div className="checkout-page">
@@ -109,16 +110,17 @@ const CheckoutPage = () => {
                 <div className="checkout-left">
                     <h1 className="checkout-title">Checkout</h1>
 
-                    {/* Input form */}
-                    <div className={`checkout-form ${isLoggedIn ? 'logged-in' : ''}`}>
+                    {/* Input form – disabled and dimmed when logged in */}
+                    <div className={`checkout-form ${isLoggedIn ? 'logged-in' : 'guest'}`}>
                         <div className="checkout-field">
                             <label>Full name</label>
                             <input
                                 type="text"
                                 name="name"
-                                value={form.name}
+                                value={isLoggedIn ? loggedInUser?.name || '' : form.name}
                                 onChange={handleChange}
                                 placeholder="Your name"
+                                disabled={isLoggedIn}
                             />
                         </div>
                         <div className="checkout-field">
@@ -126,9 +128,10 @@ const CheckoutPage = () => {
                             <input
                                 type="email"
                                 name="email"
-                                value={form.email}
+                                value={isLoggedIn ? loggedInUser?.email || '' : form.email}
                                 onChange={handleChange}
                                 placeholder="Your email"
+                                disabled={isLoggedIn}
                             />
                         </div>
                         <div className="checkout-field">
@@ -139,6 +142,7 @@ const CheckoutPage = () => {
                                 value={form.phone}
                                 onChange={handleChange}
                                 placeholder="Your phone number"
+                                disabled={isLoggedIn}
                             />
                         </div>
                         <div className="checkout-field">
@@ -146,27 +150,19 @@ const CheckoutPage = () => {
                             <input
                                 type="text"
                                 name="address"
-                                value={form.address}
+                                value={isLoggedIn ? loggedInUser?.address || '' : form.address}
                                 onChange={handleChange}
                                 placeholder="Your address"
+                                disabled={isLoggedIn}
                             />
                         </div>
                     </div>
 
-                    {/* Shipping to block */}
+                    {/* Shipping to block – updates dynamically */}
                     <div className="shipping-card">
                         <p className="shipping-card-title">Shipping to</p>
-                        {isLoggedIn ? (
-                            <>
-                                <p>{form.address || '–'}</p>
-                                <p className="shipping-card-name">Name: {form.name}</p>
-                            </>
-                        ) : (
-                            <>
-                                <p>{form.address || '–'}</p>
-                                <p className="shipping-card-name">Name: {form.name || '–'}</p>
-                            </>
-                        )}
+                        <p>{shippingAddress}</p>
+                        <p className="shipping-card-name">Name: {shippingName}</p>
                     </div>
 
                     {/* Payment method block */}
@@ -189,6 +185,7 @@ const CheckoutPage = () => {
                     </div>
 
                     {error && <p className="checkout-error">{error}</p>}
+
                     <button type="button" className="back-btn" onClick={() => navigate('/cart')}>
                         Back to Cart
                     </button>
@@ -198,7 +195,6 @@ const CheckoutPage = () => {
                 <div className="checkout-right">
                     <div className="order-summary">
                         <h2 className="order-summary-title">Order Summary</h2>
-
                         <table className="order-summary-table">
                             <thead>
                                 <tr>
