@@ -1,0 +1,212 @@
+/* ── Page wrapper ── */
+.detail-page {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ── Dynamic background layer ── */
+.detail-background {
+    position: fixed;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+    transition: background-image 0.3s ease;
+}
+
+/* ── Content above background ── */
+.detail-content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding: 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ── Status messages ── */
+.detail-status {
+    padding: 40px;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 18px;
+}
+
+/* ── LEFT COLUMN ── */
+.detail-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.detail-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 28px;
+    color: #000;
+    margin: 0;
+}
+
+.detail-img {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    border: 2px solid #111;
+    display: block;
+}
+
+/* Color block */
+.detail-color-block {
+    display: inline-block;
+    border: 2px solid #000;
+    padding: 8px 20px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.detail-color-label {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+}
+
+/* Controls row – quantity + sizes */
+.detail-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Quantity */
+.detail-qty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    background: rgba(100, 100, 100, 0.7);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background: rgba(40, 40, 40, 0.9);
+}
+
+.qty-count {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    min-width: 24px;
+    text-align: center;
+}
+
+/* Size buttons */
+.detail-sizes {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.size-btn {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 13px;
+    padding: 6px 16px;
+    border: 1px solid #aaa;
+    background: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.size-btn:hover {
+    background: rgba(180, 180, 180, 0.8);
+}
+
+/* Active size */
+.size-btn--active {
+    border: 2px solid #000;
+    background: rgba(150, 150, 150, 0.8);
+    font-weight: bold;
+}
+
+/* Action buttons */
+.detail-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.detail-btn-add,
+.detail-btn-cart {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.detail-btn-add {
+    background: rgba(80, 80, 80, 0.85);
+    color: #fff;
+}
+
+.detail-btn-add:hover {
+    background: rgba(40, 40, 40, 0.95);
+}
+
+.detail-btn-cart {
+    background: rgba(180, 180, 180, 0.7);
+    color: #000;
+}
+
+.detail-btn-cart:hover {
+    background: rgba(140, 140, 140, 0.9);
+}
+
+/* ── RIGHT COLUMN ── */
+.detail-right {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 60px;
+}
+
+.detail-section-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    margin: 0 0 12px;
+    color: #000;
+}
+
+.detail-description p {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 15px;
+    line-height: 1.7;
+    color: #111;
+}
+
+/* Product details list */
+.detail-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detail-info-list li {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    color: #111;
+}
+

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getProducts } from '../services/Api'
-import { useCart } from '../context/CartContext'
 import './ProductsPage.css'
 
 // Category background image mapping
@@ -26,16 +25,7 @@ const ProductsPage = () => {
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState('All')
-    const [added, setAdded] = useState(null)
     const navigate = useNavigate()
-    const { addToCart } = useCart()
-
-    const handleAddToCart = (e, product) => {
-        e.stopPropagation()
-        addToCart({ ...product, selectedSize: product.sizes?.[0] || 'One Size' })
-        setAdded(product._id)
-        setTimeout(() => setAdded(null), 2000)
-    }
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -113,12 +103,6 @@ const ProductsPage = () => {
                                 <p className="product-card-name">{product.name}</p>
                                 <p className="product-card-price">{product.price} kr</p>
                                 <p className="product-card-size">{product.sizes?.[0]}</p>
-                                <button
-                                    className="product-card-btn"
-                                    onClick={(e) => handleAddToCart(e, product)}
-                                >
-                                    {added === product._id ? 'Added ✓' : 'Add to cart'}
-                                </button>
                             </div>
                         </div>
                     ))}
