@@ -47,10 +47,12 @@ const CheckoutPage = () => {
     const shippingAddress = isLoggedIn ? (loggedInUser?.address || '–') : (form.address || '–')
 
     if (cartItems.length === 0) return (
-        <div className="checkout-empty">
-            <h1>Checkout</h1>
-            <p>Your cart is empty</p>
-            <button onClick={() => navigate('/products')}>Back to Products</button>
+        <div className="checkout-page">
+            <div className="checkout-empty">
+                <h1>Checkout</h1>
+                <p>Your cart is empty</p>
+                <button onClick={() => navigate('/products')}>Back to Products</button>
+            </div>
         </div>
     )
 
