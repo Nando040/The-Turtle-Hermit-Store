@@ -1,77 +1,93 @@
 import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import heroImg from '../../public/images/hero/goku-hero.png'
 import sectionImg from '../../public/images/hero/goku-section.png'
+import { getProducts } from '../services/Api'
+import { useCart } from '../context/CartContext'
+import './HomePage.css'
 
 const HomePage = () => {
     const navigate = useNavigate()
+    const { addToCart } = useCart()
+    const [products, setProducts] = useState([])
+    const [added, setAdded] = useState(null)
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const data = await getProducts()
+                setProducts(data.slice(0, 4))
+            } catch (err) {
+                console.error('Could not fetch products')
+            }
+        }
+        fetchProducts()
+    }, [])
+
+    const handleAddToCart = (product) => {
+        addToCart({ ...product, selectedSize: product.sizes?.[0] || 'One Size' })
+        setAdded(product._id)
+        setTimeout(() => setAdded(null), 2000)
+    }
 
     return (
-        <div style={{ margin: 0, padding: 0 }}>
+        <div className="home-wrapper">
 
             {/* HERO SEKTION */}
-            <div style={{ position: 'relative', width: '100%' }}>
-                <img
-                    src={heroImg}
-                    alt="hero"
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
-            {/* I Had trouble to adjust the picture and the text, so I used positioning 
-             to center the picture  and make it dynamic  ans stil keep the buttons visible  in the same position*/}
-                <div style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '60px',
-                    transform: 'translateY(-50%)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                }}>
-                    <h1 style={{
-                        fontFamily: '"Permanent Marker", cursive',
-                        fontSize: '36px',
-                        lineHeight: '1.4',
-                        color: '#000',
-                        maxWidth: '400px'
-                    }}>
+            <div className="hero-section">
+                <img src={heroImg} alt="hero" className="hero-img" />
+                {/* I Had trouble to adjust the picture and the text, so I used positioning 
+                to center the picture and make it dynamic and still keep the buttons visible in the same position */}
+                <div className="hero-content">
+                    <h1 className="hero-title">
                         WORK HARD.<br />
                         PLAY WELL. STUDY WELL.<br />
                         EAT AND SLEEP PLENTY
                     </h1>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '30px' }}>
-                        <button onClick={() => navigate('/register')} style={btnStyle}>
+                    <div className="hero-buttons">
+                        <button onClick={() => navigate('/register')} className="hero-btn">
                             Register
                         </button>
-                        <button onClick={() => navigate('/products')} style={btnStyle}>
+                        <button onClick={() => navigate('/products')} className="hero-btn">
                             Shop Gear
                         </button>
                     </div>
                 </div>
             </div>
 
-            {/* SECTION BILD */}
-            <div style={{ position: 'relative', width: '100%' }}>
-                <img
-                    src={sectionImg}
-                    alt="section"
-                    style={{ width: '100%', height: 'auto', display: 'block' }}
-                />
-            </div>
+            {/* SECTION BILD MED POPULAR GEAR */}
+            <div className="section-image">
+                <img src={sectionImg} alt="section" className="section-img" />
 
+                <div className="popular-gear">
+                    <p className="popular-slogan">Gear for fighters worthy of the Flying Nimbus. 
+                        For those who still train like a warrior and dream like a kid.</p>
+                    <h2 className="popular-title">Popular Gear</h2>
+                    <div className="popular-grid">
+                        {products.map(product => (
+                            <div key={product._id} className="popular-card">
+                                <img
+                                    src={product.imageUrl}
+                                    alt={product.name}
+                                    className="popular-card-img"
+                                    onClick={() => navigate(`/products/${product._id}`)}
+                                />
+                                <p className="popular-card-name">{product.name}</p>
+                                <p className="popular-card-price">{product.price} kr</p>
+                                <button
+                                    className="popular-card-btn"
+                                    onClick={() => handleAddToCart(product)}
+                                >
+                                    {added === product._id ? 'Added ✓' : 'Add to cart'}
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
 
         </div>
     )
-}
-
-const btnStyle = {
-    fontFamily: '"Permanent Marker", cursive',
-    fontSize: '16px',
-    padding: '10px 24px',
-    background: 'rgba(200,200,200,0.7)',
-    border: '1px solid #000',
-    cursor: 'pointer',
-    width: '160px',
-    textAlign: 'center'
 }
 
 export default HomePage
