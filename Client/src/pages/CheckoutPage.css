@@ -251,3 +251,24 @@
     cursor: not-allowed;
 }
 
+/* Guest – full opacity, active inputs */
+.checkout-form.guest input {
+    opacity: 1;
+    cursor: text;
+}
+
+/* Logged in – dimmed, disabled inputs */
+.checkout-form.logged-in {
+    opacity: 0.5;
+}
+
+.checkout-form.logged-in input {
+    cursor: not-allowed;
+    background: rgba(220, 220, 220, 0.5);
+}
+
+.checkout-empty {
+    padding: 60px;
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+}

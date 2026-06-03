@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getProducts } from '../services/Api'
 import './ProductsPage.css'
+import { useCart } from '../context/CartContext'
 
 // Category background image mapping
 const categoryBackgrounds = {
@@ -26,6 +27,7 @@ const ProductsPage = () => {
     const [error, setError] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState('All')
     const navigate = useNavigate()
+    const { addToCart } = useCart()
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -104,6 +106,13 @@ const ProductsPage = () => {
                                 <p className="product-card-price">{product.price} kr</p>
                                 <p className="product-card-size">{product.sizes?.[0]}</p>
                             </div>
+
+                            <button className="product-card-add-button" onClick={(e) => {
+                                e.stopPropagation()
+                                addToCart(product)
+                            }}>
+                                Add to Cart
+                            </button>
                         </div>
                     ))}
                 </div>

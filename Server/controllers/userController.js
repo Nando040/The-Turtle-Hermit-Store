@@ -71,9 +71,9 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route GET /api/users/current
 // @access Private
 const getCurrentUser = asyncHandler(async (req, res) => {
-    res.status(200).json(req.user);
-});
-
+    const user = await User.findById(req.user.id).select('-password')
+    res.status(200).json(user)
+})
 // @desc Logout user
 // @route POST /api/users/logout
 // @access Private

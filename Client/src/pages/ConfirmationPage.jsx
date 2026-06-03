@@ -56,6 +56,10 @@ const ConfirmationPage = () => {
                                     {item.name || 'Product'} x{item.quantity || 1} – {(item.price || 0) * (item.quantity || 1)} kr
                                 </p>
                             ))}
+
+                            <p className="confirmation-product-row">
+                                Shipping cost x1 - 49 kr
+                            </p>
                         </div>
                     )}
 
