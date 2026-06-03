@@ -4,12 +4,10 @@ const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([])
-    const [token, setToken] = useState(localStorage.getItem('token') || null)
 
-    // Lägg till produkt i cart
     const addToCart = (product) => {
         setCartItems(prev => {
-            const exists = prev.find(item => 
+            const exists = prev.find(item =>
                 item._id === product._id && item.selectedSize === product.selectedSize
             )
             if (exists) {
@@ -23,14 +21,12 @@ export const CartProvider = ({ children }) => {
         })
     }
 
-    // Ta bort produkt från cart
     const removeFromCart = (productId, selectedSize) => {
-        setCartItems(prev => prev.filter(item => 
+        setCartItems(prev => prev.filter(item =>
             !(item._id === productId && item.selectedSize === selectedSize)
         ))
     }
 
-    // Ändra antal
     const updateQuantity = (productId, selectedSize, quantity) => {
         if (quantity < 1) return
         setCartItems(prev => prev.map(item =>
@@ -40,25 +36,9 @@ export const CartProvider = ({ children }) => {
         ))
     }
 
-    // Töm cart
     const clearCart = () => setCartItems([])
 
-    // Logga in – spara token
-    const login = (newToken) => {
-        setToken(newToken)
-        localStorage.setItem('token', newToken)
-    }
-
-    // Logga ut
-    const logout = () => {
-        setToken(null)
-        localStorage.removeItem('token')
-    }
-
-    // Räkna antal produkter i cart
     const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0)
-
-    // Räkna totalpris
     const totalPrice = cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
 
     return (
@@ -68,9 +48,6 @@ export const CartProvider = ({ children }) => {
             removeFromCart,
             updateQuantity,
             clearCart,
-            token,
-            login,
-            logout,
             cartCount,
             totalPrice
         }}>

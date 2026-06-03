@@ -2,11 +2,12 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { loginUser } from '../services/Api'
 import { useCart } from '../context/CartContext'
+import { useAuth } from '../context/AuthContext'
 import './LoginPage.css'
 
 const LoginPage = () => {
     const navigate = useNavigate()
-    const { login } = useCart()
+    const { login } = useAuth()
     const [form, setForm] = useState({
         email: '',
         password: ''
