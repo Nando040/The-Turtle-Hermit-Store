@@ -1,0 +1,206 @@
+/* ── Page wrapper ── */
+.cart-page {
+    position: relative;
+    min-height: 100vh;
+}
+
+/* ── Background layer – fixed behind everything ── */
+.cart-background {
+    position: fixed;
+    inset: 0;
+    background-image: url('/images/hero/goku-section.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: -1;
+}
+
+/* ── All content above background ── */
+.cart-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* ── Empty cart ── */
+.cart-empty {
+    padding: 60px;
+    text-align: center;
+    font-family: 'Permanent Marker', cursive;
+}
+
+/* ── Title ── */
+.cart-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+/* ── Header row ── */
+.cart-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    padding: 10px 12px;
+    background: rgba(200, 200, 200, 0.6);
+    border: 1px solid #000;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* ── Cart item row ── */
+.cart-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    align-items: center;
+    padding: 12px;
+    border: 1px solid #000;
+    background: rgba(245, 245, 245, 0.7);
+    margin-bottom: 8px;
+}
+
+/* Product cell */
+.cart-row-product {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.cart-row-img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.cart-row-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cart-row-name {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    margin: 0;
+}
+
+.cart-row-color,
+.cart-row-size {
+    font-size: 12px;
+    color: #444;
+    margin: 0;
+}
+
+/* Price / total cells */
+.cart-row-price,
+.cart-row-total {
+    font-size: 14px;
+    font-family: 'Permanent Marker', cursive;
+}
+
+/* Quantity controls */
+.cart-row-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qty-btn {
+    width: 26px;
+    height: 26px;
+    background: rgba(100, 100, 100, 0.7);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background: rgba(50, 50, 50, 0.9);
+}
+
+.qty-count {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+    min-width: 20px;
+    text-align: center;
+}
+
+/* Remove button */
+.cart-row-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #888;
+    padding: 4px 8px;
+}
+
+.cart-row-remove:hover {
+    color: #c0392b;
+}
+
+/* ── Subtotal box ── */
+.cart-subtotal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #000;
+    padding: 16px 24px;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.cart-subtotal-label {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+}
+
+.cart-subtotal-price {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 22px;
+}
+
+/* ── Action buttons ── */
+.cart-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 24px;
+}
+
+.cart-btn-back,
+.cart-btn-checkout {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    padding: 12px 28px;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.cart-btn-back {
+    background: rgba(180, 180, 180, 0.7);
+    color: #000;
+}
+
+.cart-btn-checkout {
+    background: rgba(80, 80, 80, 0.85);
+    color: #fff;
+}
+
+.cart-btn-back:hover {
+    background: rgba(150, 150, 150, 0.9);
+}
+
+.cart-btn-checkout:hover {
+    background: rgba(40, 40, 40, 0.95);
+}
