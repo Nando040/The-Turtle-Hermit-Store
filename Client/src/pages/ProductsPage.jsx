@@ -7,7 +7,7 @@ import { useCart } from '../context/CartContext'
 // Category background image mapping
 const categoryBackgrounds = {
     'All': '/images/hero/goku-section.png',
-    'Protection/Skydd': '/images/categories/Protection.jpg',
+    'Protection': '/images/categories/Protection.jpg',
     'Karate': '/images/categories/Karate.jpg',
     'Thai/Kickbox': '/images/categories/Thaibox.jpg',
     'BJJ/Judo': '/images/categories/BjjJudo.jpg',
@@ -15,7 +15,7 @@ const categoryBackgrounds = {
 
 // Category display data with images
 const categories = [
-    { name: 'Protection/Skydd', image: '/images/categories/Protection.jpg' },
+    { name: 'Protection', image: '/images/categories/Protection.jpg' },
     { name: 'Karate', image: '/images/categories/Karate.jpg' },
     { name: 'Thai/Kickbox', image: '/images/categories/Thaibox.jpg' },
     { name: 'BJJ/Judo', image: '/images/categories/BjjJudo.jpg' },

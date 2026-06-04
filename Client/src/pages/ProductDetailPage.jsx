@@ -6,7 +6,7 @@ import './ProductDetailPage.css'
 
 // Dynamic background based on category
 const categoryBackgrounds = {
-    'Protection/Skydd': '/images/categories/Protection.jpg',
+    'Protection': '/images/categories/Protection.jpg',
     'Karate': '/images/categories/Karate.jpg',
     'Thai/Kickbox': '/images/categories/Thaibox.jpg',
     'BJJ/Judo': '/images/categories/BjjJudo.jpg',

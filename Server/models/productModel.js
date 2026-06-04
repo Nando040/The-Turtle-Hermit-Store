@@ -26,6 +26,9 @@ const productSchema = mongoose.Schema({
     },
     categorySlug: {
         type: String,
+    },
+    stock: {
+        type: Number,
     }
 }, {
     timestamps: true
