@@ -55,6 +55,7 @@
 .section-image {
     position: relative;
     width: 100%;
+    overflow: hidden;
 }
 
 .section-img {
@@ -71,6 +72,7 @@
     left: 0;
     width: 100%;
     padding: 40px 60px;
+    z-index: 1;
 }
 
 .popular-title {
@@ -127,4 +129,135 @@
     font-size: 24px;
     margin-top: 30px;
     color: #000;
+}
+
+/* Till telefon och mindre skärmar */
+@media (max-width: 768px) {
+
+    .hero-section {
+        overflow: hidden;
+    }
+
+    .hero-img {
+        height: 220px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .hero-title {
+        font-size: 15px;
+        max-width: 180px;
+        line-height: 1.25;
+        margin: 0;
+    }
+
+    .hero-content {
+        left: 22px;
+    }
+
+    .hero-buttons {
+        gap: 8px;
+        margin-top: 16px;
+    }
+
+    .hero-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        width: 112px;
+    }
+
+
+    .section-image {
+        width: 100%;
+        min-height: 100svh;
+        margin: 0;
+        border: none;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    .section-img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        inset: 0;
+        object-fit: cover;
+        object-position: center;
+        opacity: 0.28;
+    }
+
+    .popular-gear {
+        position: relative;
+        min-height: 100svh;
+        padding: 22px 32px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .popular-slogan {
+        font-size: 14px;
+        line-height: 1.35;
+        max-width: 230px;
+        margin: 0 0 24px;
+        font-weight: 700;
+    }
+
+    .popular-title {
+        font-size: 22px;
+        line-height: 1;
+        margin-bottom: 18px;
+    }
+
+    .popular-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 130px);
+        justify-content: center;
+        align-items: start;
+        column-gap: 70px;
+        row-gap: 24px;
+    }
+
+    .popular-card {
+        width: 130px;
+        min-height: 180px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0;
+        border: 2px solid #000;
+        background: rgba(255, 255, 255, 0.7);
+        box-sizing: border-box;
+    }
+ 
+        .popular-card-img {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+    }
+
+
+
+    .popular-card-name,
+    .popular-card-price {
+        font-size: 10px;
+        line-height: 1.05;
+        text-align: left;
+        margin: 4px 8px 0;
+        overflow-wrap: anywhere;
+    }
+
+    .popular-card-btn {
+        width: 100%;
+        margin-top: auto;
+        padding: 4px 6px;
+        font-size: 9px;
+        text-align: center;
+        border-left: 0;
+        border-right: 0;
+        border-bottom: 0;
+    }
 }

@@ -11,6 +11,8 @@ const CheckoutPage = () => {
     const { cartItems, totalPrice, clearCart } = useCart()
     const { authed } = useAuth()
     const token = localStorage.getItem('token')
+    // här hämtar vi items från localStorage och även token för att kunna skapa order
+    // vi har även states för att hantera formuläret och betalningsmetoden
     const navigate = useNavigate()
 
     const [loggedInUser, setLoggedInUser] = useState(null)
@@ -19,13 +21,13 @@ const CheckoutPage = () => {
         email: '',
         phone: '',
         address: '',
-    })
+    }) 
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('CreditCard')
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
 
     // Fetch logged in user data if token exists
-    useEffect(() => {
+    useEffect(() => { // detta är för inloggade användare så att fältet fyll automatiskt i checkout sidan
         const fetchUser = async () => {
             if (!token) return
             try {
@@ -45,7 +47,8 @@ const CheckoutPage = () => {
     // Shipping info depending on login status
     const shippingName = isLoggedIn ? (loggedInUser?.name || '–') : (form.name || '–')
     const shippingAddress = isLoggedIn ? (loggedInUser?.address || '–') : (form.address || '–')
-
+    // dessa 2 variabler är det som fyller i vår shipping "boxen" om man är inloggad
+    //annars förblir den tom och man får fylla i den själv
     if (cartItems.length === 0) return (
         <div className="checkout-page">
             <div className="checkout-empty">
@@ -68,10 +71,11 @@ const CheckoutPage = () => {
         if (!isLoggedIn && (!form.name || !form.email || !form.address)) {
             setError('Please fill in all fields')
             return
-        }
+        } // Denna är för gäster så det inte går att checka ut utan att fylla i
 
         setLoading(true)
-
+        
+        // Denna visar oss vad vi håller på beställa
         const orderData = {
             products: cartItems.map(item => ({
                 product_id: item._id,
@@ -89,6 +93,8 @@ const CheckoutPage = () => {
             const result = await createOrder(orderData, token)
             if (result._id) {
                 clearCart()
+                // Denna koden är vad som skickas till ConfirmationPage så vi kan visa vad som
+                // man har beställt
                 navigate('/confirmation', { state: { order: result, name: shippingName } })
             } else {
                 setError('Something went wrong, please try again')
@@ -112,7 +118,9 @@ const CheckoutPage = () => {
                 <div className="checkout-left">
                     <h1 className="checkout-title">Checkout</h1>
 
-                    {/* Input form – disabled and dimmed when logged in */}
+                    {/* Input form – disabled and dimmed when logged in */}{/* Här så ville jag att man inte
+                    skulle kunna fylla i om man är inloggad och i css, så fälten blir "dimmiga" men är 
+                    man gäst så kan man fylla i dem */}
                     <div className={`checkout-form ${isLoggedIn ? 'logged-in' : 'guest'}`}>
                         <div className="checkout-field">
                             <label>Full name</label>
@@ -167,7 +175,7 @@ const CheckoutPage = () => {
                         <p className="shipping-card-name">Name: {shippingName}</p>
                     </div>
 
-                    {/* Payment method block */}
+                    {/* Payment method block */}{/* Som det står här, här väljer man betalningsmetod */}
                     <div className="payment-card">
                         <h2 className="payment-title">Payment method</h2>
                         <div

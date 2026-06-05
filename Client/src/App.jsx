@@ -9,6 +9,8 @@ import ConfirmationPage from './pages/ConfirmationPage'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 
+// Detta här är där routes bestämms, om main.jsx är en tågstation så är detta här
+// terminalen/växelcentralen som bestämmer vilket spår som tåger ska åka och pages är destination
 function App() {
   return (
     <BrowserRouter>

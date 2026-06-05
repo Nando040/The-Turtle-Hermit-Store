@@ -6,22 +6,23 @@ import './ProductDetailPage.css'
 
 // Dynamic background based on category
 const categoryBackgrounds = {
-    'Protection/Skydd': '/images/categories/Protection.jpg',
+    'Protection': '/images/categories/Protection.jpg',
     'Karate': '/images/categories/Karate.jpg',
     'Thai/Kickbox': '/images/categories/Thaibox.jpg',
     'BJJ/Judo': '/images/categories/BjjJudo.jpg',
-}
+} // Samma logikn som visar vilket kategori det är i bakgrunden
 
-const ProductDetailPage = () => {
-    const { id } = useParams()
+const ProductDetailPage = () => { // fältet som täcker hela sidan som i HomePage och ProductsPage
+    const { id } = useParams() // Detta hjälper frontend att veta vilken produkt vi vill visa
+    // den läser den specifika id vi fått från mongoDB
     const navigate = useNavigate()
     const { addToCart } = useCart()
 
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [selectedSize, setSelectedSize] = useState('')
-    const [quantity, setQuantity] = useState(1)
+    const [selectedSize, setSelectedSize] = useState('') // Storlekar kan visas nu som vi la i data
+    const [quantity, setQuantity] = useState(1) // Här börjar vi lägga till antal i våra produkter
     const [added, setAdded] = useState(false)
 
     useEffect(() => {
@@ -29,7 +30,7 @@ const ProductDetailPage = () => {
             try {
                 const data = await getProductById(id)
                 setProduct(data)
-                if (data.sizes && data.sizes.length > 0) {
+                if (data.sizes && data.sizes.length > 0) { // här börjar de sortera detlajer
                     setSelectedSize(data.sizes[0])
                 }
             } catch (err) {
@@ -42,14 +43,15 @@ const ProductDetailPage = () => {
     }, [id])
 
     const handleAddToCart = () => {
-        for (let i = 0; i < quantity; i++) {
+        for (let i = 0; i < quantity; i++) {// koden börjar se mer ut nu mer detaljerat
+            // och specifikt för vad man ska handla
             addToCart({ ...product, selectedSize })
         }
         setAdded(true)
         setTimeout(() => setAdded(false), 2000)
     }
-
-    if (loading) return <p className="detail-status">Loading...</p>
+    //skönhets detaljer som ger vid små "fel"
+    if (loading) return <p className="detail-status">Loading...</p> 
     if (error) return <p className="detail-status">{error}</p>
     if (!product) return <p className="detail-status">Product not found</p>
 
@@ -92,7 +94,7 @@ const ProductDetailPage = () => {
                             <button
                                 className="qty-btn"
                                 onClick={() => setQuantity(q => Math.max(1, q - 1))}
-                            >
+                            >   {/*här är logiken för att öka och sänka antal på produkten */}
                                 –
                             </button>
                             <span className="qty-count">{quantity}</span>
@@ -114,7 +116,7 @@ const ProductDetailPage = () => {
                                         onClick={() => setSelectedSize(size)}
                                     >
                                         {size}
-                                    </button>
+                                    </button> /*Här gör det synlig för oss att välja storlek om det finns!*/
                                 ))}
                             </div>
                         )}

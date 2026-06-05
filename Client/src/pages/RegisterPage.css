@@ -115,3 +115,47 @@
 .register-login-link:hover {
     color: #000;
 }
+
+@media (max-width: 768px) {
+
+    .register-content {
+        padding: 30px 20px;
+    }
+
+    .register-title {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .register-form {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 24px;
+        box-sizing: border-box;
+    }
+
+    .register-field input {
+        width: 100%;
+        box-sizing: border-box;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #000;
+
+    }
+
+    .register-btn {
+        align-self: center;
+        width: 200px;
+        min-height: 120px;
+        border-radius: 0;
+        line-height: 40px;
+        border: 1px solid #000;
+        
+
+    }
+
+    .register-login-link {
+        text-align: center;
+        display: block;
+    }
+}

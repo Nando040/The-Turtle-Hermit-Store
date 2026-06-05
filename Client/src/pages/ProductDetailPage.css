@@ -228,3 +228,48 @@
     color: #111;
 }
 
+/* Telefon anpassning */
+@media (max-width: 768px) {
+
+    .detail-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .detail-left {
+        align-items: center;
+    }
+
+    .detail-title {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .detail-img {
+        max-width: 280px;
+        width: 100%;
+    }
+
+    .detail-controls {
+        justify-content: center;
+    }
+
+    .detail-actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .detail-btn-add,
+    .detail-btn-cart {
+        flex: 1;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .detail-right {
+        padding-top: 0;
+    }
+}
+

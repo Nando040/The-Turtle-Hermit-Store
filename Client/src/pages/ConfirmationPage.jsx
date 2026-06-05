@@ -1,9 +1,13 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import './ConfirmationPage.css'
 
-const ConfirmationPage = () => {
+const ConfirmationPage = () => { 
+    // uselocation är hooken som vi använder för att hämta data som CheckoutPage
+    //CheckoutPage hämtar data från vår databas som vi har bestämt i vår backend
+    // i orderModel så det blir som ett kvitto som sparas på MongoDB
     const { state } = useLocation()
-    const navigate = useNavigate()
+    const navigate = useNavigate() // Denna är vad som hjälper oss att gåt till andra sidor
+    
 
     if (!state?.order) return (
         <div className="confirmation-page">

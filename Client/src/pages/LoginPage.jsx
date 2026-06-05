@@ -7,13 +7,14 @@ import './LoginPage.css'
 
 const LoginPage = () => {
     const navigate = useNavigate()
-    const { login } = useAuth()
-    const [form, setForm] = useState({
+    const { login } = useAuth() // sparar token i localStorage (det som säger vi är inloggade)
+    //också det som försvinner när vi loggar ut
+    const [form, setForm] = useState({ // logiken som förändrar i våra inputfält
         email: '',
         password: ''
     })
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null) // logiken som hanterar felmeddelanden
+    const [loading, setLoading] = useState(false) // logiken som hanterar laddningstillstånd
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value })
