@@ -85,6 +85,7 @@
     background: rgba(80, 80, 80, 0.85);
     color: #fff;
     border: none;
+    border-radius: 0;
     cursor: pointer;
     margin-top: 8px;
     transition: background 0.2s ease;
@@ -114,4 +115,37 @@
 
 .login-register-link:hover {
     color: #000;
+}
+
+@media (max-width: 768px) {
+
+    .login-content {
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .login-form {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 24px;
+        box-sizing: border-box;
+    }
+
+    .login-field input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .login-btn {
+        width: 100%;
+    }
+
+    .login-register-link {
+        text-align: center;
+        display: block;
+    }
 }

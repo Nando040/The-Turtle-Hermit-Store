@@ -133,3 +133,50 @@
 .confirm-btn-shop:hover {
     background: rgba(140, 140, 140, 0.9);
 }
+
+@media (max-width: 768px) {
+
+    .confirmation-content {
+        padding: 20px;
+    }
+
+    .confirmation-title {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .confirmation-card {
+        padding: 16px;
+    }
+
+    .confirmation-card-title {
+        font-size: 18px;
+    }
+
+    .confirmation-details {
+        font-size: 13px;
+    }
+
+    .confirmation-product-row {
+        font-size: 13px;
+    }
+
+    .confirmation-total {
+        font-size: 15px;
+        text-align: right;
+    }
+
+    .confirmation-actions {
+        width: 100%;
+        max-width: 500px;
+        gap: 10px;
+    }
+
+    .confirm-btn-home,
+    .confirm-btn-shop {
+        flex: 1;
+        font-size: 13px;
+        padding: 12px 8px;
+        text-align: center;
+    }
+}

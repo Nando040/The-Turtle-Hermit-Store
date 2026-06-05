@@ -4,7 +4,9 @@ import './CartPage.css'
 
 const CartPage = () => {
     const { cartItems, removeFromCart, updateQuantity, totalPrice } = useCart()
-    const navigate = useNavigate()
+    const navigate = useNavigate() 
+    // Väldigt enkla states, nu är det mer design som gäller i denna sidan
+    // Contexten hjälper att det ser snyggare ut
 
     if (cartItems.length === 0) return (
         <div className="cart-page">
@@ -17,7 +19,7 @@ const CartPage = () => {
                 </div>
             </div>
 
-    )
+    )//säkerhets detalj som visar en tom kundvagn
 
     return (
         <div className="cart-page">
@@ -84,7 +86,9 @@ const CartPage = () => {
                             onClick={() => removeFromCart(item._id, item.selectedSize)}
                         >
                             ✕
-                        </button>
+                        </button>{/* Här lägger vi till för första gången ta bort knapp insåg min delete route
+                        vad onödig eftersom jag inte har admin user så detta sköter det oavsett , så länge jag har mina
+                        items i min db och hanterar allt i mongoDB och seed*/}
 
                     </div>
                 ))}

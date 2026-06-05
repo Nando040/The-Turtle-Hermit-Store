@@ -12,7 +12,9 @@ const categoryBackgrounds = {
     'Thai/Kickbox': '/images/categories/Thaibox.jpg',
     'BJJ/Judo': '/images/categories/BjjJudo.jpg',
 }
-
+// Variabler som gör det lätt att filtrera produkter när 
+// man skapat logik för de olika kategorierna i backend och frontend.
+// Mitt syfte var att bakgrunden skulle ändras till kategorin man väljer.
 // Category display data with images
 const categories = [
     { name: 'Protection', image: '/images/categories/Protection.jpg' },
@@ -28,11 +30,14 @@ const ProductsPage = () => {
     const [selectedCategory, setSelectedCategory] = useState('All')
     const navigate = useNavigate()
     const { addToCart } = useCart()
+    // Här är alla states som vi använder i denna sidan, den täcker 
+    // alla funktioner och även designen som vi har i denna sidan
 
-    useEffect(() => {
+    useEffect(() => { // här börjar vi bygga logiken för att använda states
         const fetchProducts = async () => {
             try {
-                const data = await getProducts()
+                const data = await getProducts() // här hämtar vi alla produkter från backend
+                // vi tillkallar vår getProducts från api.js
                 setProducts(data)
             } catch (err) {
                 setError('Could not fetch products')
@@ -44,7 +49,8 @@ const ProductsPage = () => {
     }, [])
 
     // Filter products based on selected category
-    const filteredProducts = selectedCategory === 'All'
+    const filteredProducts = selectedCategory === 'All' // Här är logiken för att filtrera 
+    // produkter baserat på vilken kategori vi använder det senare i vår return det som vi ser i sidan.
         ? products
         : products.filter(p => p.category === selectedCategory)
 
@@ -58,7 +64,8 @@ const ProductsPage = () => {
             <div
                 className="products-background"
                 style={{ backgroundImage: `url(${categoryBackgrounds[selectedCategory]})` }}
-            />
+            /> {/* Här är logiken för att ändra bakgrundsbilden baserat på vilken kategori vi har valt */}
+            {/* som vi nämner där uppe är det här bakgrundsbilden filtreras. */}
 
             {/* All content sits above background */}
             <div className="products-content">
@@ -69,7 +76,7 @@ const ProductsPage = () => {
                     <button
                         className="show-all-button"
                         onClick={() => setSelectedCategory('All')}
-                    >
+                    >{/* Vår knapp som visar alla produkter */}
                         Show all
                     </button>
                 </div>
@@ -88,7 +95,10 @@ const ProductsPage = () => {
                     ))}
                 </div>
 
-                {/* Products grid */}
+                {/* Products grid */} {/*Det här är "magiken" sker runt produkterna 
+                Vi ser till att själva kortet tar oss till produktsidan men lägger även till 
+                en knapp i botten av kortet som gör att vi kan handla. Hade gått att finslipa mycket mer
+                 men detta var det jag hann med och det liknar lite min figma.*/}
                 <div className="products-grid">
                     {filteredProducts.map(product => (
                         <div

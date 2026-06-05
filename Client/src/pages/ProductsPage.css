@@ -1,11 +1,11 @@
-/* ── Page wrapper – relative so background can be absolute inside ── */
+
 .products-page {
     position: relative;
     min-height: 100vh;
     overflow: hidden;
 }
 
-/* ── Background layer – sits behind everything ── */
+
 .products-background {
     position: fixed;
     inset: 0;
@@ -14,18 +14,18 @@
     background-repeat: no-repeat;
     opacity: 0.4;
     z-index: -1;
-    /* Smooth transition when category changes */
+
     transition: background-image 0.4s ease;
 }
 
-/* ── All content above background ── */
+
 .products-content {
     position: relative;
     z-index: 1;
     padding: 30px 40px;
 }
 
-/* ── Category filter row ── */
+
 .category-filter {
     display: flex;
     justify-content: space-between;
@@ -39,7 +39,7 @@
     color: #000;
 }
 
-/* ── Show all button ── */
+
 .show-all-button {
     font-family: 'Permanent Marker', cursive;
     font-size: 16px;
@@ -54,7 +54,7 @@
     background: rgba(50, 50, 50, 0.95);
 }
 
-/* ── Category cards row ── */
+
 .category-cards {
     display: flex;
     gap: 20px;
@@ -74,7 +74,7 @@
     transform: scale(1.05);
 }
 
-/* Active category gets a red border */
+
 .category-card--active {
     opacity: 1;
     outline: 3px solid #c0392b;
@@ -94,14 +94,13 @@
     color: #000;
 }
 
-/* ── Products grid ── */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
-/* ── Individual product card ── */
+
 .product-card {
     background: rgba(255, 255, 255, 0.15);
     border: 2px solid #111;
@@ -174,4 +173,83 @@
 
 .product-card-btn:hover {
     background: #c0392b;
+}
+
+/* telefon anpassning*/
+@media (max-width: 768px) {
+
+    .products-content {
+        padding: 16px 12px;
+    }
+
+
+    .category-filter {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+    }
+
+    .category-title {
+        font-size: 18px;
+        text-align: center;
+    }
+
+ 
+    .show-all-button {
+        width: 90%;
+        text-align: center;
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+
+    .category-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 20px;
+        justify-items: center;
+    }
+
+    .category-card-img {
+        width: 80px;
+        height: 70px;
+    }
+
+    .category-card-name {
+        font-size: 10px;
+    }
+
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .product-card-img {
+        height: 100px;
+    }
+
+    .product-card-name {
+        font-size: 11px;
+    }
+
+    .product-card-price {
+        font-size: 11px;
+    }
+
+    .product-card-size {
+        font-size: 10px;
+    }
+
+    .product-card-btn {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .product-card-add-button {
+        font-size: 12px;
+        padding: 8px;
+    }
 }

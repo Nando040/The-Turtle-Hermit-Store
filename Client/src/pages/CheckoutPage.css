@@ -272,3 +272,64 @@
     text-align: center;
     font-family: 'Permanent Marker', cursive;
 }
+
+@media (max-width: 768px) {
+
+    .checkout-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 16px;
+    }
+
+    .checkout-title {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .checkout-field input {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .shipping-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .payment-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .payment-option {
+        padding: 14px 16px;
+    }
+
+    .back-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .order-summary {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .order-summary-table {
+        font-size: 12px;
+    }
+
+    .order-total {
+        justify-content: flex-end;
+    }
+
+    .order-total-label,
+    .order-total-price {
+        font-size: 16px;
+    }
+
+    .confirm-order-button {
+        font-size: 16px;
+        padding: 14px;
+    }
+}
