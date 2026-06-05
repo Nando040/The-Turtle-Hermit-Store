@@ -1,4 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+// Här skapar vi våra states denna har lite mer än AuthContext eftersom den har mer funktioner
+// t.ex så har vi useEffect som gör att varje gång cartItems ändras så sparas det i localStorage
+// Jag fick lära mig det genom att alla mina items försvann varje gång jag refreshade sidan,
 
 const CartContext = createContext()
 
@@ -31,7 +34,7 @@ export const CartProvider = ({ children }) => {
             return [...prev, { ...product, quantity: 1 }]
         })
     }
-
+    // Dessa functioner har inget med mina routes från backend att göra det är bara för hantera localStorage och cartItems state i frontend
     const removeFromCart = (productId, selectedSize) => {
         setCartItems(prev => prev.filter(item =>
             !(item._id === productId && item.selectedSize === selectedSize)

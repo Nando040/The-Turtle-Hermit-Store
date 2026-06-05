@@ -8,9 +8,13 @@ import './HomePage.css'
 
 const HomePage = () => {
     const navigate = useNavigate()
+    // Den skickar oss till en annan sida när vi klickar på knapparna i hero sektionen
     const { addToCart } = useCart()
+    //hämtar vi cartContext och tar ut addToCart till popular sektionen
     const [products, setProducts] = useState([])
+    // Med denna så vet vår sida vad som ska visas i popular sektionen
     const [added, setAdded] = useState(null)
+    // detta bekräftar när vi lagt en produkt i vår kundvagn
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -22,14 +26,18 @@ const HomePage = () => {
             }
         }
         fetchProducts()
-    }, [])
+    }, []) // denna hämtar produkter från backend(databasen) och har try/catch 
+    // ifall den inte lyckas hämta produkter
+
 
     const handleAddToCart = (product) => {
         addToCart({ ...product, selectedSize: product.sizes?.[0] || 'One Size' })
         setAdded(product._id)
         setTimeout(() => setAdded(null), 2000)
-    }
+    } // Hela denna blocket är logiken för att lägga till en produkt i kundvagnen
+    // vi använder states från längre upp i koden och ger det syfte. 
 
+    //Mer förklaring om hur jag har förstått att bygga design i min reflektion.
     return (
         <div className="home-wrapper">
 

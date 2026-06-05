@@ -1,5 +1,9 @@
 const BASE_URL = 'http://localhost:5000/api'
 
+// Detta här är själva tolken från frontend till backend, som fetchar data från backend
+// och skickar data till backend, om vi tar en analogi så är det som en flyledar torn som skickar info
+// mellan flygplan (frontend) och marken (backend) och ser till att allt går smidigt och att rätt info kommer fram
+
 
 // PRODUCTS
 
