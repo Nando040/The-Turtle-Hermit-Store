@@ -306,8 +306,12 @@
     }
 
     .back-btn {
-        width: 100%;
-        text-align: center;
+        align-self: center;
+        width: 200px;
+        min-height: 120px;
+        border-radius: 0;
+        line-height: 40px;
+        border: 1px solid #000;
     }
 
     .order-summary {
@@ -329,7 +333,11 @@
     }
 
     .confirm-order-button {
-        font-size: 16px;
-        padding: 14px;
+        align-self: center;
+        width: 200px;
+        min-height: 120px;
+        border-radius: 0;
+        line-height: 40px;
+        border: 1px solid #000;
     }
 }

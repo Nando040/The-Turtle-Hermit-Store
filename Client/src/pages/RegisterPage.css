@@ -137,11 +137,21 @@
     .register-field input {
         width: 100%;
         box-sizing: border-box;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #000;
+
     }
 
     .register-btn {
-        width: 100%;
+        align-self: center;
+        width: 200px;
+        min-height: 120px;
         border-radius: 0;
+        line-height: 40px;
+        border: 1px solid #000;
+        
+
     }
 
     .register-login-link {

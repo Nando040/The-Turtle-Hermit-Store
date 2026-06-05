@@ -296,9 +296,12 @@
 
     .cart-btn-back,
     .cart-btn-checkout {
-        flex: 1;
-        font-size: 13px;
-        padding: 10px 8px;
-        text-align: center;
+                align-self: center;
+        width: 200px;
+        min-height: 120px;
+        border-radius: 0;
+        line-height: 40px;
+        border: 1px solid #000;
+
     }
 }
